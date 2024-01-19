@@ -141,25 +141,34 @@ async function main() {
                     // });
                     
                     
-         const user = await prisma.user.update({
-                        where:{
-                            email:"priyanshu1@gmail.com"
-                        },
-                        data:{
-                            email:'priyanshu1@gmail.com',
-                            userPreference:{
-                            //   create:{
-                            //     emailUpdates:true
-                            //   }  
-                            connect:{
-                                id:'4f69a7d7-7ad2-4f0a-8980-744c74b99b9a'
-                            }
-                            // disconnect:{
-                            //     id:'4f69a7d7-7ad2-4f0a-8980-744c74b99b9a'
-                            // }
-                            }
-                        },
-                    })
+        //  const user = await prisma.user.update({
+        //                 where:{
+        //                     email:"priyanshu1@gmail.com"
+        //                 },
+        //                 data:{
+        //                     email:'priyanshu1@gmail.com',
+        //                     userPreference:{
+        //                     //   create:{
+        //                     //     emailUpdates:true
+        //                     //   }  
+        //                     connect:{
+        //                         id:'4f69a7d7-7ad2-4f0a-8980-744c74b99b9a'
+        //                     }
+        //                     // disconnect:{
+        //                     //     id:'4f69a7d7-7ad2-4f0a-8980-744c74b99b9a'
+        //                     // }
+        //                     }
+        //                 },
+        //             })
+
+        // delete or deleteMany
+        const user = await prisma.user.deleteMany(
+ {
+where:{
+age:{gt:21}
+}
+  }
+        )
 
                     console.log(user)
                     
