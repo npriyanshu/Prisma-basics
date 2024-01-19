@@ -54,13 +54,17 @@ async function main() {
 // },
        
 // ]})
-const user = await prisma.user.findUnique({
+const user = await prisma.user.findMany({
     where: {
-      age_name:{
-        age:23,
-        name:"Plinchu Bhai"
-      }
-    }
+        age:23
+
+    },
+    orderBy:{
+        age:"asc"
+    },
+    // distinct:['name','age']
+    take:2,
+    skip:1,
   });
   
 
