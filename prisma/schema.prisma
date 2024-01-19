@@ -11,26 +11,26 @@ datasource db {
 }
 
 model User {
-  id             String          @id @default(uuid())
-  age            Int
-  name           String          @unique
-  email          String
-  role Role @default(BASIC)
-  writtenPosts   Post[]          @relation("WrittenPosts")
-  favoritePosts  Post[]          @relation("FavoritePosts")
-  userPreference UserPreference?
+  id               String          @id @default(uuid())
+  age              Int
+  name             String
+  email            String          @unique
+  role             Role            @default(BASIC)
+  writtenPosts     Post[]          @relation("WrittenPosts")
+  favoritePosts    Post[]          @relation("FavoritePosts")
+  userPreference   UserPreference? @relation(fields: [userPreferenceId], references: [id])
+  userPreferenceId String?         @unique
 
+  // @id  - field level attribute
+
+  @@unique([age, name]) // - block level attribute
   @@index([email])
-  @@unique([age,name]) // - block level attribute
-
- // @id  - field level attribute
 }
 
 model UserPreference {
   id           String  @id @default(uuid())
   emailUpdates Boolean
-  user         User    @relation(fields: [userId], references: [id])
-  userId       String  @unique
+  user         User?
 }
 
 model Post {
@@ -52,9 +52,8 @@ model Category {
   name  String @unique
 }
 
-
 // enum type
 enum Role {
-    BASIC 
-    ADMIN
+  BASIC
+  ADMIN
 }
