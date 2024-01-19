@@ -56,15 +56,39 @@ async function main() {
 // ]})
 const user = await prisma.user.findMany({
     where: {
-        age:23
+        // age:23
+        // name:"pinchu"
+        // name:{equals:"pinchu"}  //- gives users with matching name
+        // name:{not:"pinchu"}, // - gives names which not matched
+        // name:{in:["pinchu",'someothername']}  //- gives users which names are presented in this array
+        // name:{notIn:["pinchu",'someothername']} // - gives users which names are not presented in this array
+
+
+        // we can also perform and type query by giving two attributes like this 
+
+// name:"pinchu Bhai",
+// age:{lt:30} // - ls = less than  and gt = greater than
+
+// contains - check if a text is inside another text
+
+// email:{contains:"gmail"}
+
+// endswith - check if a text ends with another text
+
+
+// email:{endsWith:"@gmail.com"}
+
+// startsWith - check if a text starts with another text
+
+// email:{startsWith:"pinchu"}
 
     },
-    orderBy:{
-        age:"asc"
-    },
-    // distinct:['name','age']
-    take:2,
-    skip:1,
+//     orderBy:{
+//         age:"asc"
+//     },
+//     // distinct:['name','age']
+//     take:2,
+//     skip:1,
   });
   
 
